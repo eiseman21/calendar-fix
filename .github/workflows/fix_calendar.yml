@@ -1,34 +1,26 @@
 name: Fix Outlook Calendar Timezone
-
 on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
-
 jobs:
   fix-calendar:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: pip install requests
-
       - name: Fetch and fix ICS feed
         env:
           OUTLOOK_ICS_URL: ${{ secrets.OUTLOOK_ICS_URL }}
         run: python fix_calendar.py
-
       - name: Commit and push if calendar changed
         run: |
           git config user.name "github-actions[bot]"
