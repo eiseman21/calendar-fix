@@ -23,4 +23,4 @@ os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     f.write(fixed)
 
-print(f"Saved corrected ICS to {OUTPUT_PATH}.")
+print(f"Saved corrected ICS to {OUTPUT_PATH}.")  
